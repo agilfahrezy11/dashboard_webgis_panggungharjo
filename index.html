@@ -1,133 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Dashboard WebGIS Panggungharjo</title>
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-     body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Noto Sans', sans-serif;
-    }
-  
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      background-color: rgba(2, 19, 62, 0.9); /* Semi-transparent background */
-      color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 16px;
-    }
-  
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-  
-    .logo-image {
-      height: 2em; /* Adjust logo height */
-      width: auto;
-    }
-  
-    .menu {
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Noto Sans', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        background: rgba(2, 19, 62, 0.9);
+        color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .logo-image {
+        height: 2em;
+        width: auto;
+      }
+      .menu {
       display: flex;
       gap: 15px;
       list-style: none;
       margin: 0;
       padding: 0;
     }
-  
     .menu li a {
       text-decoration: none;
-       color: white;
+      color: white;
       font-weight: 600;
+      padding: 8px 12px;
+      display: block;
     }
-    .content {
-      display: grid;
-      grid-template-rows: 50% 50%;
-      height: 100vh;
-      margin-top: 60px; /* Space for navbar */
-    }
-  
-    .map-container {
-      height: 50vh; /* Adjust as needed */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-} 
-    .diagram-container {
-      background: #fff;
-      padding: 10px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      overflow-y: auto;
-    }
-  
-    /* Add styles for navbar links on hover */
     .menu li a:hover {
       color: #1abc9c;
       border-bottom: 2px solid #1abc9c;
     }
-    .footer {
-      text-align: center;
-      padding: 10px;
-      background-color: rgba(2, 19, 62, 0.9);
-      color: white;
-      border-top: 1px solid #ddd;
-      margin-top: auto;
-    }
-    /* Adjust navbar for smaller screens */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .menu {
+          display: flex;
+          gap: 15px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        .menu.active {
+          display: flex;
+        }
+        .menu li {
+          margin: 10px 0;
+          text-align: left;
+        }
+        .logo {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
       }
-  
-      .menu {
-        flex-direction: column;
-        width: 100%;
-        padding: 10px 0;
-        display: none;
-        background-color: #fff;
-      }
-  
-      .menu.active {
+      .content {
+        flex: 1;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
       }
-  
-      .menu li {
-        margin: 10px 0;
-        text-align: left;
+      .map-container {
+        width: 100%;
+        height: 50vh;
+        margin-top: 60px;
+        overflow: hidden;
       }
-  
-      .logo {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+      .section-title {
+        text-align: center;
+        padding: 8px 0;
+        margin-bottom: 8px;
       }
-    }
-  </style>
+      .section-title h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+      .diagram-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 10px;
+        padding: 10px;
+        background: #f9f9f9;
+        width: 100%;
+      }
+      .chart-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .footer {
+        background: #02133e;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto;
+        width: 100%;
+      }
+    </style>
   
   <body class="bg-gray-100 font-sans">
     <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
       <img src="logo-ugm-png.png" alt="Logo" class="logo-image">
-      WebGIS Tingkat Kerentanan Masyarakat di Kelurahan Panggungharjo
+      WebGIS Kerentanan Kelompok Masyarakat Kelurahan Panggungharjo
       </div>
         <ul class="menu">
         <li><a href="https://sites.google.com/view/tentang-webgis-panggungharjo/home" target="_blank" rel="noopener noreferrer">Tentang Peta ini</a></li>
@@ -143,31 +159,35 @@
       <iframe src="https://agilfahrezy11.github.io/webgis_kerentanan_panggungharjo/#13/-7.8469/110.3499" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
     </div>
 
-    <!-- Diagram Section -->
-    <div class="diagram-container">
-      <div>
-        <h2 class="text-lg font-semibold mb-4">Jumlah Kondisi Batita</h2>
-        <canvas id="stackedBarChart1" width="400" height="200"></canvas>
-      </div>
-      <div>
-        <h2 class="text-lg font-semibold mb-4">Jumlah Kondisi Difabel</h2>
-        <canvas id="stackedBarChart2" width="400" height="200"></canvas>
-      </div>
-      <div>
-        <h2 class="text-lg font-semibold mb-4">Jumlah Kondisi Ibu Hamil</h2>
-        <canvas id="stackedBarChart3" width="400" height="200"></canvas>
-      </div>
-      <div>
-        <h2 class="text-lg font-semibold mb-4">Jumlah Kondisi Lansia</h2>
-        <canvas id="stackedBarChart4" width="400" height="200"></canvas>
-      </div>
-    </div>
+  <!-- Section Title -->
+    <div class="section-title text-center py-4">
+    <h2 class="text-2xl font-semibold text-gray-800">Statistik Kerentanan Berdasarkan Kelompok Masyarakat</h2>
   </div>
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2023 WebGIS Panggungharjo. All rights reserved.</p>
-    <p>Developed by Tim Pengabdian Masyarakat FK-KMK Universitas Gadhjah Mada.</p>
-  </footer>
+    <!-- Diagram Section -->
+<div class="diagram-container">
+  <div class="chart-card">
+    <h2 class="text-lg font-semibold">Jumlah Kondisi Anak</h2>
+    <canvas id="stackedBarChart1"></canvas>
+  </div>
+  <div class="chart-card">
+    <h2 class="text-lg font-semibold">Jumlah Kondisi Difabel</h2>
+    <canvas id="stackedBarChart2"></canvas>
+  </div>
+  <div class="chart-card">
+    <h2 class="text-lg font-semibold">Jumlah Kondisi Ibu Hamil</h2>
+    <canvas id="stackedBarChart3"></canvas>
+  </div>
+  <div class="chart-card">
+    <h2 class="text-lg font-semibold">Jumlah Kondisi Lansia</h2>
+    <canvas id="stackedBarChart4"></canvas>
+  </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2023 WebGIS Panggungharjo. All rights reserved.</p>
+      <p>Developed by Tim Pengabdian Masyarakat FK-KMK Universitas Gadhjah Mada.</p>
+    </footer>
   <script>
     // Labels for X-axis
     const labels = ["Sawit", "Prancak Glondong", "Palemsewu", "Pandes", "Ngireng Ireng", "Kweni",
