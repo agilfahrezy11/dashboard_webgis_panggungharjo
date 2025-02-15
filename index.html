@@ -7,11 +7,13 @@
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body, html {
+     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
+      font-family: 'Noto Sans', sans-serif;
     }
   
     .navbar {
@@ -20,12 +22,13 @@
       left: 0;
       width: 100%;
       z-index: 10;
-      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+      background-color: rgba(2, 19, 62, 0.9); /* Semi-transparent background */
+      color: white;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
+      padding: 8px 16px;
     }
   
     .logo {
@@ -51,28 +54,29 @@
   
     .menu li a {
       text-decoration: none;
-      color: #333;
+       color: white;
       font-weight: 600;
     }
-  
     .content {
       display: grid;
       grid-template-rows: 50% 50%;
       height: 100vh;
-      margin-top: 80px; /* Space for navbar */
+      margin-top: 60px; /* Space for navbar */
     }
   
     .map-container {
-      position: relative;
-      height: 100%;
-    }
-  
+      height: 50vh; /* Adjust as needed */
+      border: 1px solid #02133e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+} 
     .diagram-container {
       background: #fff;
-      padding: 20px;
+      padding: 10px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 10px;
       overflow-y: auto;
     }
   
@@ -81,7 +85,14 @@
       color: #1abc9c;
       border-bottom: 2px solid #1abc9c;
     }
-  
+    .footer {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(2, 19, 62, 0.9);
+      color: white;
+      border-top: 1px solid #ddd;
+      margin-top: auto;
+    }
     /* Adjust navbar for smaller screens */
     @media (max-width: 768px) {
       .navbar {
@@ -117,11 +128,11 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
-      <img src="logo dan tulisan ugm biru.png" alt="Logo" class="logo-image">
+      <img src="logo-ugm-png.png" alt="Logo" class="logo-image">
       WebGIS Tingkat Kerentanan Masyarakat di Kelurahan Panggungharjo
       </div>
         <ul class="menu">
-        <li><a href="https://webgis-kerentanan-sosial-7jgluyq.gamma.site/" target="_blank" rel="noopener noreferrer">Tentang Peta ini</a></li>
+        <li><a href="https://sites.google.com/view/tentang-webgis-panggungharjo/home" target="_blank" rel="noopener noreferrer">Tentang Peta ini</a></li>
         <li><a href="https://agilfahrezy11.github.io/webgis_kerentanan_panggungharjo/" target="_blank" rel="noopener noreferrer">Peta dengan Layar Penuh</a></li>
        <li><a href="https://www.panggungharjo.desa.id/" target="_blank" rel="noopener noreferrer">Situs Kelurahan Panggungharjo</a></li>
   </ul>
@@ -154,7 +165,11 @@
       </div>
     </div>
   </div>
-
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 WebGIS Panggungharjo. All rights reserved.</p>
+    <p>Developed by Tim Pengabdian Masyarakat FK-KMK Universitas Gadhjah Mada.</p>
+  </footer>
   <script>
     // Labels for X-axis
     const labels = ["Sawit", "Prancak Glondong", "Palemsewu", "Pandes", "Ngireng Ireng", "Kweni",
